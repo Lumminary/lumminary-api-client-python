@@ -18,7 +18,9 @@ Method | HTTP request | Description
 [**post_authorization_result_credentials**](LumminaryAPISpecApi.md#post_authorization_result_credentials) | **POST** /products/{productId}/authorizations/{authorizationId}/credentials | Provide a result for the authorization
 [**post_authorization_result_file**](LumminaryAPISpecApi.md#post_authorization_result_file) | **POST** /products/{productId}/authorizations/{authorizationId}/file | Provide a file result to the authorization, e
 [**post_client_snp_group**](LumminaryAPISpecApi.md#post_client_snp_group) | **POST** /clients/{clientId}/datasets/{datasetId}/snps/ | Get a large group of SNPs
-[**post_product_authorization**](LumminaryAPISpecApi.md#post_product_authorization) | **POST** /products/{productId}/authorizations/{authorizationId} | Singnal that processing is complete, without uploading any result
+[**post_jwt_auth**](LumminaryAPISpecApi.md#post_jwt_auth) | **POST** /auth/jwt | General-purpose authentication
+[**post_product_authorization**](LumminaryAPISpecApi.md#post_product_authorization) | **POST** /products/{productId}/authorizations/{authorizationId} | Signal that processing is complete, without uploading any result
+[**post_product_authorization_unfulfillable**](LumminaryAPISpecApi.md#post_product_authorization_unfulfillable) | **POST** /products/{productId}/authorizations/{authorizationId}/unfulfillable | Catch-all Authorization state, for authorizations that passed all verifications and should reach the partner Product, but cannot be fulfilled for various reasons
 
 
 # **get_authorizations_queue**
@@ -651,7 +653,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_authorization_result_credentials**
-> post_authorization_result_credentials(product_id, authorization_id, credentials_username=credentials_username, credentials_password=credentials_password, report_url=report_url)
+> ReportCredentials post_authorization_result_credentials(product_id, authorization_id, credentials_username=credentials_username, credentials_password=credentials_password, report_url=report_url, x_fields=x_fields)
 
 Provide a result for the authorization
 
@@ -678,10 +680,12 @@ authorization_id = 'authorization_id_example' # str | The UUID of the authorizat
 credentials_username = 'credentials_username_example' # str | Credentials for accessing the result. Includes password, username and url (optional)
 credentials_password = 'credentials_password_example' # str | Credentials for accessing the result. Includes password, username and url (optional)
 report_url = 'report_url_example' # str | Credentials for accessing the result. Includes password, username and url (optional)
+x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
     # Provide a result for the authorization
-    api_instance.post_authorization_result_credentials(product_id, authorization_id, credentials_username=credentials_username, credentials_password=credentials_password, report_url=report_url)
+    api_response = api_instance.post_authorization_result_credentials(product_id, authorization_id, credentials_username=credentials_username, credentials_password=credentials_password, report_url=report_url, x_fields=x_fields)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling LumminaryAPISpecApi->post_authorization_result_credentials: %s\n" % e)
 ```
@@ -695,10 +699,11 @@ Name | Type | Description  | Notes
  **credentials_username** | **str**| Credentials for accessing the result. Includes password, username and url | [optional] 
  **credentials_password** | **str**| Credentials for accessing the result. Includes password, username and url | [optional] 
  **report_url** | **str**| Credentials for accessing the result. Includes password, username and url | [optional] 
+ **x_fields** | **str**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**ReportCredentials**](ReportCredentials.md)
 
 ### Authorization
 
@@ -712,7 +717,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_authorization_result_file**
-> post_authorization_result_file(product_id, authorization_id, file_report=file_report, original_filename=original_filename)
+> ReportFile post_authorization_result_file(product_id, authorization_id, file_report=file_report, original_filename=original_filename, x_fields=x_fields)
 
 Provide a file result to the authorization, e
 
@@ -738,10 +743,12 @@ product_id = 'product_id_example' # str | The UUID of the product
 authorization_id = 'authorization_id_example' # str | The UUID of the authorization
 file_report = '/path/to/file.txt' # file | A binary file (e.g. pdf) that contains the result of the authorization (optional)
 original_filename = 'original_filename_example' # str | Optional original filename for the report. If not provided, the filename of uploaded file will be used (optional)
+x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
     # Provide a file result to the authorization, e
-    api_instance.post_authorization_result_file(product_id, authorization_id, file_report=file_report, original_filename=original_filename)
+    api_response = api_instance.post_authorization_result_file(product_id, authorization_id, file_report=file_report, original_filename=original_filename, x_fields=x_fields)
+    pprint(api_response)
 except ApiException as e:
     print("Exception when calling LumminaryAPISpecApi->post_authorization_result_file: %s\n" % e)
 ```
@@ -754,10 +761,11 @@ Name | Type | Description  | Notes
  **authorization_id** | **str**| The UUID of the authorization | 
  **file_report** | **file**| A binary file (e.g. pdf) that contains the result of the authorization | [optional] 
  **original_filename** | **str**| Optional original filename for the report. If not provided, the filename of uploaded file will be used | [optional] 
+ **x_fields** | **str**| An optional fields mask | [optional] 
 
 ### Return type
 
-void (empty response body)
+[**ReportFile**](ReportFile.md)
 
 ### Authorization
 
@@ -830,10 +838,64 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **post_jwt_auth**
+> JavascriptWebToken post_jwt_auth(username, password, role, x_fields=x_fields)
+
+General-purpose authentication
+
+## Note: * The JWT tokens returned should be passed to any resource that requires authentication, in the Authentication header, in the format `Bearer: your-token-here` * Only JWT authentication tokens are provided (no refresh tokens). These tokens are valid for 30 seconds from the moment they were issued
+
+### Example
+```python
+from __future__ import print_function
+import time
+import lumminary_sdk
+from lumminary_sdk.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = lumminary_sdk.LumminaryAPISpecApi()
+username = 'username_example' # str | The email for a Client, or the API for a partner product
+password = 'password_example' # str | The passowrd for a Client, or the API key for a service
+role = 'role_example' # str | The role for which authentication will be made. Value : role_product
+x_fields = 'x_fields_example' # str | An optional fields mask (optional)
+
+try:
+    # General-purpose authentication
+    api_response = api_instance.post_jwt_auth(username, password, role, x_fields=x_fields)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling LumminaryAPISpecApi->post_jwt_auth: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **username** | **str**| The email for a Client, or the API for a partner product | 
+ **password** | **str**| The passowrd for a Client, or the API key for a service | 
+ **role** | **str**| The role for which authentication will be made. Value : role_product | 
+ **x_fields** | **str**| An optional fields mask | [optional] 
+
+### Return type
+
+[**JavascriptWebToken**](JavascriptWebToken.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **post_product_authorization**
 > post_product_authorization(product_id, authorization_id)
 
-Singnal that processing is complete, without uploading any result
+Signal that processing is complete, without uploading any result
 
 ### Example
 ```python
@@ -855,7 +917,7 @@ product_id = 'product_id_example' # str | The UUID of the product
 authorization_id = 'authorization_id_example' # str | The UUID of the authorization
 
 try:
-    # Singnal that processing is complete, without uploading any result
+    # Signal that processing is complete, without uploading any result
     api_instance.post_product_authorization(product_id, authorization_id)
 except ApiException as e:
     print("Exception when calling LumminaryAPISpecApi->post_product_authorization: %s\n" % e)
@@ -871,6 +933,62 @@ Name | Type | Description  | Notes
 ### Return type
 
 void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **post_product_authorization_unfulfillable**
+> Authorization post_product_authorization_unfulfillable(product_id, authorization_id, x_fields=x_fields)
+
+Catch-all Authorization state, for authorizations that passed all verifications and should reach the partner Product, but cannot be fulfilled for various reasons
+
+### Example
+```python
+from __future__ import print_function
+import time
+import lumminary_sdk
+from lumminary_sdk.rest import ApiException
+from pprint import pprint
+
+# Configure API key authorization: Bearer
+configuration = lumminary_sdk.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# create an instance of the API class
+api_instance = lumminary_sdk.LumminaryAPISpecApi(lumminary_sdk.ApiClient(configuration))
+product_id = 'product_id_example' # str | The UUID of the product
+authorization_id = 'authorization_id_example' # str | The UUID of the authorization
+x_fields = 'x_fields_example' # str | An optional fields mask (optional)
+
+try:
+    # Catch-all Authorization state, for authorizations that passed all verifications and should reach the partner Product, but cannot be fulfilled for various reasons
+    api_response = api_instance.post_product_authorization_unfulfillable(product_id, authorization_id, x_fields=x_fields)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling LumminaryAPISpecApi->post_product_authorization_unfulfillable: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **product_id** | **str**| The UUID of the product | 
+ **authorization_id** | **str**| The UUID of the authorization | 
+ **x_fields** | **str**| An optional fields mask | [optional] 
+
+### Return type
+
+[**Authorization**](Authorization.md)
 
 ### Authorization
 

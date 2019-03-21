@@ -1261,7 +1261,8 @@ class LumminaryAPISpecApi(object):
         :param str credentials_username: Credentials for accessing the result. Includes password, username and url
         :param str credentials_password: Credentials for accessing the result. Includes password, username and url
         :param str report_url: Credentials for accessing the result. Includes password, username and url
-        :return: None
+        :param str x_fields: An optional fields mask
+        :return: ReportCredentials
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1287,12 +1288,13 @@ class LumminaryAPISpecApi(object):
         :param str credentials_username: Credentials for accessing the result. Includes password, username and url
         :param str credentials_password: Credentials for accessing the result. Includes password, username and url
         :param str report_url: Credentials for accessing the result. Includes password, username and url
-        :return: None
+        :param str x_fields: An optional fields mask
+        :return: ReportCredentials
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['product_id', 'authorization_id', 'credentials_username', 'credentials_password', 'report_url']  # noqa: E501
+        all_params = ['product_id', 'authorization_id', 'credentials_username', 'credentials_password', 'report_url', 'x_fields']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1327,6 +1329,8 @@ class LumminaryAPISpecApi(object):
         query_params = []
 
         header_params = {}
+        if 'x_fields' in params:
+            header_params['X-Fields'] = params['x_fields']  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -1357,7 +1361,7 @@ class LumminaryAPISpecApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='ReportCredentials',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -1379,7 +1383,8 @@ class LumminaryAPISpecApi(object):
         :param str authorization_id: The UUID of the authorization (required)
         :param file file_report: A binary file (e.g. pdf) that contains the result of the authorization
         :param str original_filename: Optional original filename for the report. If not provided, the filename of uploaded file will be used
-        :return: None
+        :param str x_fields: An optional fields mask
+        :return: ReportFile
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1404,12 +1409,13 @@ class LumminaryAPISpecApi(object):
         :param str authorization_id: The UUID of the authorization (required)
         :param file file_report: A binary file (e.g. pdf) that contains the result of the authorization
         :param str original_filename: Optional original filename for the report. If not provided, the filename of uploaded file will be used
-        :return: None
+        :param str x_fields: An optional fields mask
+        :return: ReportFile
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['product_id', 'authorization_id', 'file_report', 'original_filename']  # noqa: E501
+        all_params = ['product_id', 'authorization_id', 'file_report', 'original_filename', 'x_fields']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1446,6 +1452,8 @@ class LumminaryAPISpecApi(object):
             query_params.append(('original_filename', params['original_filename']))  # noqa: E501
 
         header_params = {}
+        if 'x_fields' in params:
+            header_params['X-Fields'] = params['x_fields']  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -1472,7 +1480,7 @@ class LumminaryAPISpecApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='ReportFile',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -1599,8 +1607,127 @@ class LumminaryAPISpecApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def post_jwt_auth(self, username, password, role, **kwargs):  # noqa: E501
+        """General-purpose authentication  # noqa: E501
+
+        ## Note: * The JWT tokens returned should be passed to any resource that requires authentication, in the Authentication header, in the format `Bearer: your-token-here` * Only JWT authentication tokens are provided (no refresh tokens). These tokens are valid for 30 seconds from the moment they were issued  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.post_jwt_auth(username, password, role, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str username: The email for a Client, or the API for a partner product (required)
+        :param str password: The passowrd for a Client, or the API key for a service (required)
+        :param str role: The role for which authentication will be made. Value : role_product (required)
+        :param str x_fields: An optional fields mask
+        :return: JavascriptWebToken
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.post_jwt_auth_with_http_info(username, password, role, **kwargs)  # noqa: E501
+        else:
+            (data) = self.post_jwt_auth_with_http_info(username, password, role, **kwargs)  # noqa: E501
+            return data
+
+    def post_jwt_auth_with_http_info(self, username, password, role, **kwargs):  # noqa: E501
+        """General-purpose authentication  # noqa: E501
+
+        ## Note: * The JWT tokens returned should be passed to any resource that requires authentication, in the Authentication header, in the format `Bearer: your-token-here` * Only JWT authentication tokens are provided (no refresh tokens). These tokens are valid for 30 seconds from the moment they were issued  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.post_jwt_auth_with_http_info(username, password, role, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str username: The email for a Client, or the API for a partner product (required)
+        :param str password: The passowrd for a Client, or the API key for a service (required)
+        :param str role: The role for which authentication will be made. Value : role_product (required)
+        :param str x_fields: An optional fields mask
+        :return: JavascriptWebToken
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['username', 'password', 'role', 'x_fields']  # noqa: E501
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method post_jwt_auth" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'username' is set
+        if ('username' not in params or
+                params['username'] is None):
+            raise ValueError("Missing the required parameter `username` when calling `post_jwt_auth`")  # noqa: E501
+        # verify the required parameter 'password' is set
+        if ('password' not in params or
+                params['password'] is None):
+            raise ValueError("Missing the required parameter `password` when calling `post_jwt_auth`")  # noqa: E501
+        # verify the required parameter 'role' is set
+        if ('role' not in params or
+                params['role'] is None):
+            raise ValueError("Missing the required parameter `role` when calling `post_jwt_auth`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+        if 'x_fields' in params:
+            header_params['X-Fields'] = params['x_fields']  # noqa: E501
+
+        form_params = []
+        local_var_files = {}
+        if 'username' in params:
+            form_params.append(('username', params['username']))  # noqa: E501
+        if 'password' in params:
+            form_params.append(('password', params['password']))  # noqa: E501
+        if 'role' in params:
+            form_params.append(('role', params['role']))  # noqa: E501
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/x-www-form-urlencoded', 'multipart/form-data'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/auth/jwt', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='JavascriptWebToken',  # noqa: E501
+            auth_settings=auth_settings,
+            async=params.get('async'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def post_product_authorization(self, product_id, authorization_id, **kwargs):  # noqa: E501
-        """Singnal that processing is complete, without uploading any result  # noqa: E501
+        """Signal that processing is complete, without uploading any result  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
@@ -1622,7 +1749,7 @@ class LumminaryAPISpecApi(object):
             return data
 
     def post_product_authorization_with_http_info(self, product_id, authorization_id, **kwargs):  # noqa: E501
-        """Singnal that processing is complete, without uploading any result  # noqa: E501
+        """Signal that processing is complete, without uploading any result  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
@@ -1697,6 +1824,115 @@ class LumminaryAPISpecApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type=None,  # noqa: E501
+            auth_settings=auth_settings,
+            async=params.get('async'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def post_product_authorization_unfulfillable(self, product_id, authorization_id, **kwargs):  # noqa: E501
+        """Catch-all Authorization state, for authorizations that passed all verifications and should reach the partner Product, but cannot be fulfilled for various reasons  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.post_product_authorization_unfulfillable(product_id, authorization_id, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str product_id: The UUID of the product (required)
+        :param str authorization_id: The UUID of the authorization (required)
+        :param str x_fields: An optional fields mask
+        :return: Authorization
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.post_product_authorization_unfulfillable_with_http_info(product_id, authorization_id, **kwargs)  # noqa: E501
+        else:
+            (data) = self.post_product_authorization_unfulfillable_with_http_info(product_id, authorization_id, **kwargs)  # noqa: E501
+            return data
+
+    def post_product_authorization_unfulfillable_with_http_info(self, product_id, authorization_id, **kwargs):  # noqa: E501
+        """Catch-all Authorization state, for authorizations that passed all verifications and should reach the partner Product, but cannot be fulfilled for various reasons  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.post_product_authorization_unfulfillable_with_http_info(product_id, authorization_id, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param str product_id: The UUID of the product (required)
+        :param str authorization_id: The UUID of the authorization (required)
+        :param str x_fields: An optional fields mask
+        :return: Authorization
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['product_id', 'authorization_id', 'x_fields']  # noqa: E501
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method post_product_authorization_unfulfillable" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'product_id' is set
+        if ('product_id' not in params or
+                params['product_id'] is None):
+            raise ValueError("Missing the required parameter `product_id` when calling `post_product_authorization_unfulfillable`")  # noqa: E501
+        # verify the required parameter 'authorization_id' is set
+        if ('authorization_id' not in params or
+                params['authorization_id'] is None):
+            raise ValueError("Missing the required parameter `authorization_id` when calling `post_product_authorization_unfulfillable`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'product_id' in params:
+            path_params['productId'] = params['product_id']  # noqa: E501
+        if 'authorization_id' in params:
+            path_params['authorizationId'] = params['authorization_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+        if 'x_fields' in params:
+            header_params['X-Fields'] = params['x_fields']  # noqa: E501
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['Bearer']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/products/{productId}/authorizations/{authorizationId}/unfulfillable', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='Authorization',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),

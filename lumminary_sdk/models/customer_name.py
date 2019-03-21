@@ -47,8 +47,10 @@ class CustomerName(object):
         self._last_name = None
         self.discriminator = None
 
-        self.first_name = first_name
-        self.last_name = last_name
+        if first_name is not None:
+            self.first_name = first_name
+        if last_name is not None:
+            self.last_name = last_name
 
     @property
     def first_name(self):
@@ -70,8 +72,6 @@ class CustomerName(object):
         :param first_name: The first_name of this CustomerName.  # noqa: E501
         :type: str
         """
-        if first_name is None:
-            raise ValueError("Invalid value for `first_name`, must not be `None`")  # noqa: E501
 
         self._first_name = first_name
 
@@ -95,8 +95,6 @@ class CustomerName(object):
         :param last_name: The last_name of this CustomerName.  # noqa: E501
         :type: str
         """
-        if last_name is None:
-            raise ValueError("Invalid value for `last_name`, must not be `None`")  # noqa: E501
 
         self._last_name = last_name
 

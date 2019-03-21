@@ -221,7 +221,7 @@ class Authorization(object):
     def state(self):
         """Gets the state of this Authorization.  # noqa: E501
 
-        The authorization state. One of : ['authorization_state_pending_dataset', 'authorization_state_fulfillable', 'authorization_state_result_available']  # noqa: E501
+        The authorization state. One of : ['authorization_state_pending_dataset', 'authorization_state_fulfillable', 'authorization_state_result_available', 'authorization_state_not_fulfillable']  # noqa: E501
 
         :return: The state of this Authorization.  # noqa: E501
         :rtype: str
@@ -232,7 +232,7 @@ class Authorization(object):
     def state(self, state):
         """Sets the state of this Authorization.
 
-        The authorization state. One of : ['authorization_state_pending_dataset', 'authorization_state_fulfillable', 'authorization_state_result_available']  # noqa: E501
+        The authorization state. One of : ['authorization_state_pending_dataset', 'authorization_state_fulfillable', 'authorization_state_result_available', 'authorization_state_not_fulfillable']  # noqa: E501
 
         :param state: The state of this Authorization.  # noqa: E501
         :type: str
