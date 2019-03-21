@@ -62,15 +62,20 @@ class CustomerAddress(object):
         self._country = None
         self.discriminator = None
 
-        self.city = city
-        self.address1 = address1
+        if city is not None:
+            self.city = city
+        if address1 is not None:
+            self.address1 = address1
         if address2 is not None:
             self.address2 = address2
-        self.zipcode = zipcode
-        self.phone = phone
+        if zipcode is not None:
+            self.zipcode = zipcode
+        if phone is not None:
+            self.phone = phone
         if state is not None:
             self.state = state
-        self.country = country
+        if country is not None:
+            self.country = country
 
     @property
     def city(self):
@@ -92,8 +97,6 @@ class CustomerAddress(object):
         :param city: The city of this CustomerAddress.  # noqa: E501
         :type: str
         """
-        if city is None:
-            raise ValueError("Invalid value for `city`, must not be `None`")  # noqa: E501
 
         self._city = city
 
@@ -117,8 +120,6 @@ class CustomerAddress(object):
         :param address1: The address1 of this CustomerAddress.  # noqa: E501
         :type: str
         """
-        if address1 is None:
-            raise ValueError("Invalid value for `address1`, must not be `None`")  # noqa: E501
 
         self._address1 = address1
 
@@ -165,8 +166,6 @@ class CustomerAddress(object):
         :param zipcode: The zipcode of this CustomerAddress.  # noqa: E501
         :type: str
         """
-        if zipcode is None:
-            raise ValueError("Invalid value for `zipcode`, must not be `None`")  # noqa: E501
 
         self._zipcode = zipcode
 
@@ -190,8 +189,6 @@ class CustomerAddress(object):
         :param phone: The phone of this CustomerAddress.  # noqa: E501
         :type: str
         """
-        if phone is None:
-            raise ValueError("Invalid value for `phone`, must not be `None`")  # noqa: E501
 
         self._phone = phone
 
@@ -238,8 +235,6 @@ class CustomerAddress(object):
         :param country: The country of this CustomerAddress.  # noqa: E501
         :type: str
         """
-        if country is None:
-            raise ValueError("Invalid value for `country`, must not be `None`")  # noqa: E501
 
         self._country = country
 

@@ -8,7 +8,6 @@ from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 
 from lumminary_sdk import LumminaryAPISpecApi as LumminaryApiGenerated
-from lumminary_sdk import AuthApi as AuthApiGenerated
 
 class LumminaryApi(LumminaryApiGenerated):
     CWL_IV_SIZE_BYTES = 12
@@ -26,7 +25,7 @@ class LumminaryApi(LumminaryApiGenerated):
             self.api_client.configuration.host = self._credentials.host
 
     def _authenticate(self):
-        authApiInstance = AuthApiGenerated()
+        authApiInstance = LumminaryApiGenerated()
         if self._credentials.host is not None:
             authApiInstance.api_client.configuration.host = self._credentials.host
 

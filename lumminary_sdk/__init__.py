@@ -17,7 +17,6 @@ from __future__ import absolute_import
 
 # import apis into sdk package
 from lumminary_sdk.api.lumminary_api_spec_api import LumminaryAPISpecApi
-from lumminary_sdk.api.auth_api import AuthApi
 
 # import ApiClient
 from lumminary_sdk.lumminary_api import LumminaryApi
