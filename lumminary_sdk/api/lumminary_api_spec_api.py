@@ -1842,8 +1842,7 @@ class LumminaryAPISpecApi(object):
         :param async bool
         :param str product_id: The UUID of the product (required)
         :param str authorization_id: The UUID of the authorization (required)
-        :param str x_fields: An optional fields mask
-        :return: Authorization
+        :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1865,13 +1864,12 @@ class LumminaryAPISpecApi(object):
         :param async bool
         :param str product_id: The UUID of the product (required)
         :param str authorization_id: The UUID of the authorization (required)
-        :param str x_fields: An optional fields mask
-        :return: Authorization
+        :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['product_id', 'authorization_id', 'x_fields']  # noqa: E501
+        all_params = ['product_id', 'authorization_id']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1906,8 +1904,6 @@ class LumminaryAPISpecApi(object):
         query_params = []
 
         header_params = {}
-        if 'x_fields' in params:
-            header_params['X-Fields'] = params['x_fields']  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -1932,7 +1928,7 @@ class LumminaryAPISpecApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='Authorization',  # noqa: E501
+            response_type=None,  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),

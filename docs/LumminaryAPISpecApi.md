@@ -946,7 +946,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_product_authorization_unfulfillable**
-> Authorization post_product_authorization_unfulfillable(product_id, authorization_id, x_fields=x_fields)
+> post_product_authorization_unfulfillable(product_id, authorization_id)
 
 Catch-all Authorization state, for authorizations that passed all verifications and should reach the partner Product, but cannot be fulfilled for various reasons
 
@@ -968,12 +968,10 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 api_instance = lumminary_sdk.LumminaryAPISpecApi(lumminary_sdk.ApiClient(configuration))
 product_id = 'product_id_example' # str | The UUID of the product
 authorization_id = 'authorization_id_example' # str | The UUID of the authorization
-x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
     # Catch-all Authorization state, for authorizations that passed all verifications and should reach the partner Product, but cannot be fulfilled for various reasons
-    api_response = api_instance.post_product_authorization_unfulfillable(product_id, authorization_id, x_fields=x_fields)
-    pprint(api_response)
+    api_instance.post_product_authorization_unfulfillable(product_id, authorization_id)
 except ApiException as e:
     print("Exception when calling LumminaryAPISpecApi->post_product_authorization_unfulfillable: %s\n" % e)
 ```
@@ -984,11 +982,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **product_id** | **str**| The UUID of the product | 
  **authorization_id** | **str**| The UUID of the authorization | 
- **x_fields** | **str**| An optional fields mask | [optional] 
 
 ### Return type
 
-[**Authorization**](Authorization.md)
+void (empty response body)
 
 ### Authorization
 
