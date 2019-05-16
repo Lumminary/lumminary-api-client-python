@@ -32,3 +32,4 @@ from lumminary_sdk.models.reference_genome_overview import ReferenceGenomeOvervi
 from lumminary_sdk.models.reference_sequence import ReferenceSequence
 from lumminary_sdk.models.report_credentials import ReportCredentials
 from lumminary_sdk.models.report_file import ReportFile
+from lumminary_sdk.models.snps_min_required import SnpsMinRequired

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **email** | **str** | The contact email for the product | [optional] 
 **redirect_uri** | **str** | A redirect url registered as a callback for the Connect with Lumminary authorization flow | [optional] 
 **snps_min_required_any** | **bool** | A boolean value specifying if SNP set is not strict | 
-**snps_min_required** | **list[str]** | A list of the minimum SNPs required for an Product to be compatible with a Client | 
+**snps_min_required** | [**SnpsMinRequired**](SnpsMinRequired.md) | Minimum required snps for Dataset-Product compatibility | 
 **product_uuid** | **str** | The product identifier | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
