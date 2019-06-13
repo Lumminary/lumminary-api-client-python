@@ -75,6 +75,8 @@ class LumminaryApi(LumminaryApiGenerated):
                 "zipcode": authorization.scopes.address.zipcode,
                 "state": authorization.scopes.address.state
             }
+        if hasattr(authorization.scopes, "sex"):
+            authorizationMetadata["customer_sex"] = authorization.scopes.sex
         
         return authorizationMetadata
 

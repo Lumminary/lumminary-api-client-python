@@ -34,110 +34,46 @@ class AccessScope(object):
                             and the value is json key in definition.
     """
     swagger_types = {
-        'login': 'str',
-        'address': 'CustomerAddress',
-        'email': 'str',
         'name': 'CustomerName',
-        'dataset': 'str'
+        'sex': 'str',
+        'address': 'CustomerAddress',
+        'login': 'str',
+        'dataset': 'str',
+        'email': 'str'
     }
 
     attribute_map = {
-        'login': 'login',
-        'address': 'address',
-        'email': 'email',
         'name': 'name',
-        'dataset': 'dataset'
+        'sex': 'sex',
+        'address': 'address',
+        'login': 'login',
+        'dataset': 'dataset',
+        'email': 'email'
     }
 
-    def __init__(self, login=None, address=None, email=None, name=None, dataset=None):  # noqa: E501
+    def __init__(self, name=None, sex=None, address=None, login=None, dataset=None, email=None):  # noqa: E501
         """AccessScope - a model defined in Swagger"""  # noqa: E501
 
-        self._login = None
-        self._address = None
-        self._email = None
         self._name = None
+        self._sex = None
+        self._address = None
+        self._login = None
         self._dataset = None
+        self._email = None
         self.discriminator = None
 
-        if login is not None:
-            self.login = login
-        if address is not None:
-            self.address = address
-        if email is not None:
-            self.email = email
         if name is not None:
             self.name = name
+        if sex is not None:
+            self.sex = sex
+        if address is not None:
+            self.address = address
+        if login is not None:
+            self.login = login
         if dataset is not None:
             self.dataset = dataset
-
-    @property
-    def login(self):
-        """Gets the login of this AccessScope.  # noqa: E501
-
-        Access to no customer information, just the customer UUID  # noqa: E501
-
-        :return: The login of this AccessScope.  # noqa: E501
-        :rtype: str
-        """
-        return self._login
-
-    @login.setter
-    def login(self, login):
-        """Sets the login of this AccessScope.
-
-        Access to no customer information, just the customer UUID  # noqa: E501
-
-        :param login: The login of this AccessScope.  # noqa: E501
-        :type: str
-        """
-
-        self._login = login
-
-    @property
-    def address(self):
-        """Gets the address of this AccessScope.  # noqa: E501
-
-        Access to customer address  # noqa: E501
-
-        :return: The address of this AccessScope.  # noqa: E501
-        :rtype: CustomerAddress
-        """
-        return self._address
-
-    @address.setter
-    def address(self, address):
-        """Sets the address of this AccessScope.
-
-        Access to customer address  # noqa: E501
-
-        :param address: The address of this AccessScope.  # noqa: E501
-        :type: CustomerAddress
-        """
-
-        self._address = address
-
-    @property
-    def email(self):
-        """Gets the email of this AccessScope.  # noqa: E501
-
-        Access to customer email  # noqa: E501
-
-        :return: The email of this AccessScope.  # noqa: E501
-        :rtype: str
-        """
-        return self._email
-
-    @email.setter
-    def email(self, email):
-        """Sets the email of this AccessScope.
-
-        Access to customer email  # noqa: E501
-
-        :param email: The email of this AccessScope.  # noqa: E501
-        :type: str
-        """
-
-        self._email = email
+        if email is not None:
+            self.email = email
 
     @property
     def name(self):
@@ -163,6 +99,75 @@ class AccessScope(object):
         self._name = name
 
     @property
+    def sex(self):
+        """Gets the sex of this AccessScope.  # noqa: E501
+
+        The sex of the customer. One of : ['M', 'F', 'N']  # noqa: E501
+
+        :return: The sex of this AccessScope.  # noqa: E501
+        :rtype: str
+        """
+        return self._sex
+
+    @sex.setter
+    def sex(self, sex):
+        """Sets the sex of this AccessScope.
+
+        The sex of the customer. One of : ['M', 'F', 'N']  # noqa: E501
+
+        :param sex: The sex of this AccessScope.  # noqa: E501
+        :type: str
+        """
+
+        self._sex = sex
+
+    @property
+    def address(self):
+        """Gets the address of this AccessScope.  # noqa: E501
+
+        Access to customer address  # noqa: E501
+
+        :return: The address of this AccessScope.  # noqa: E501
+        :rtype: CustomerAddress
+        """
+        return self._address
+
+    @address.setter
+    def address(self, address):
+        """Sets the address of this AccessScope.
+
+        Access to customer address  # noqa: E501
+
+        :param address: The address of this AccessScope.  # noqa: E501
+        :type: CustomerAddress
+        """
+
+        self._address = address
+
+    @property
+    def login(self):
+        """Gets the login of this AccessScope.  # noqa: E501
+
+        Access to no customer information, just the customer UUID  # noqa: E501
+
+        :return: The login of this AccessScope.  # noqa: E501
+        :rtype: str
+        """
+        return self._login
+
+    @login.setter
+    def login(self, login):
+        """Sets the login of this AccessScope.
+
+        Access to no customer information, just the customer UUID  # noqa: E501
+
+        :param login: The login of this AccessScope.  # noqa: E501
+        :type: str
+        """
+
+        self._login = login
+
+    @property
     def dataset(self):
         """Gets the dataset of this AccessScope.  # noqa: E501
 
@@ -184,6 +189,29 @@ class AccessScope(object):
         """
 
         self._dataset = dataset
+
+    @property
+    def email(self):
+        """Gets the email of this AccessScope.  # noqa: E501
+
+        Access to customer email  # noqa: E501
+
+        :return: The email of this AccessScope.  # noqa: E501
+        :rtype: str
+        """
+        return self._email
+
+    @email.setter
+    def email(self, email):
+        """Sets the email of this AccessScope.
+
+        Access to customer email  # noqa: E501
+
+        :param email: The email of this AccessScope.  # noqa: E501
+        :type: str
+        """
+
+        self._email = email
 
     def to_dict(self):
         """Returns the model properties as a dict"""
