@@ -21,16 +21,16 @@ class LumminaryApi(LumminaryApiGenerated):
         LumminaryApiGenerated.__init__(self)
 
         self.api_client.configuration.api_key["Authorization"] = "Bearer {0}".format(authenticatedJwt)
-        if self._credentials.host is not None:
-            self.api_client.configuration.host = self._credentials.host
+        if self._credentials.api_host is not None:
+            self.api_client.configuration.host = self._credentials.api_host
 
     def _authenticate(self):
         authApiInstance = LumminaryApiGenerated()
-        if self._credentials.host is not None:
-            authApiInstance.api_client.configuration.host = self._credentials.host
+        if self._credentials.api_host is not None:
+            authApiInstance.api_client.configuration.host = self._credentials.api_host
 
         authResponse = authApiInstance.post_jwt_auth(
-            username= self._credentials.login,
+            username= self._credentials.product_uuid,
             password = self._credentials.api_key,
             role = self._credentials.role
         )
@@ -48,7 +48,7 @@ class LumminaryApi(LumminaryApiGenerated):
         return self.post_client_snp_group(client_id, dataset_id, snpsEncoded, **kwargs)
 
     def authorization_metadata(self, authorizationUuid):
-        authorization = self.get_product_authorization(product_id = self._credentials.login, authorization_id = authorizationUuid)
+        authorization = self.get_product_authorization(product_id = self._credentials.product_uuid, authorization_id = authorizationUuid)
 
         authorizationMetadata = {
             "customer": authorization.client_uuid,
@@ -81,7 +81,7 @@ class LumminaryApi(LumminaryApiGenerated):
         return authorizationMetadata
 
     def authorization_dna_data(self, authorizationUuid):
-        authorization = self.get_product_authorization(product_id = self._credentials.login, authorization_id = authorizationUuid)
+        authorization = self.get_product_authorization(product_id = self._credentials.product_uuid, authorization_id = authorizationUuid)
 
         if hasattr(authorization.scopes, "dataset"):
             datasetSnps = self.get_client_snp_group(authorization.client_uuid, authorization.scopes.dataset)
