@@ -36,3 +36,4 @@ from lumminary_sdk.models.javascript_web_token import JavascriptWebToken
 from lumminary_sdk.models.molecular_location import MolecularLocation
 from lumminary_sdk.models.report_credentials import ReportCredentials
 from lumminary_sdk.models.report_file import ReportFile
+from lumminary_sdk.models.file_location import FileLocation
