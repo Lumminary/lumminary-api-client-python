@@ -14,7 +14,7 @@
 from setuptools import setup, find_packages  # noqa: H301
 
 NAME = "lumminary_sdk"
-VERSION = "1.0.7"
+VERSION = "1.0.8"
 # To install the library, run the following
 #
 # python setup.py install

@@ -31,7 +31,6 @@ from lumminary_sdk.models.client_gene import ClientGene
 from lumminary_sdk.models.client_snp import ClientSNP
 from lumminary_sdk.models.customer_address import CustomerAddress
 from lumminary_sdk.models.customer_name import CustomerName
-from lumminary_sdk.models.file_location import FileLocation
 from lumminary_sdk.models.javascript_web_token import JavascriptWebToken
 from lumminary_sdk.models.molecular_location import MolecularLocation
 from lumminary_sdk.models.report_credentials import ReportCredentials
