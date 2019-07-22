@@ -1261,6 +1261,7 @@ class LumminaryAPISpecApi(object):
         :param str credentials_username: Credentials for accessing the result. Includes password, username and url
         :param str credentials_password: Credentials for accessing the result. Includes password, username and url
         :param str report_url: Credentials for accessing the result. Includes password, username and url
+        :param bool notify_client: Optional flag to trigger a mail being sent to the client, to notify them of the report being available
         :param str x_fields: An optional fields mask
         :return: ReportCredentials
                  If the method is called asynchronously,
@@ -1288,13 +1289,14 @@ class LumminaryAPISpecApi(object):
         :param str credentials_username: Credentials for accessing the result. Includes password, username and url
         :param str credentials_password: Credentials for accessing the result. Includes password, username and url
         :param str report_url: Credentials for accessing the result. Includes password, username and url
+        :param bool notify_client: Optional flag to trigger a mail being sent to the client, to notify them of the report being available
         :param str x_fields: An optional fields mask
         :return: ReportCredentials
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['product_id', 'authorization_id', 'credentials_username', 'credentials_password', 'report_url', 'x_fields']  # noqa: E501
+        all_params = ['product_id', 'authorization_id', 'credentials_username', 'credentials_password', 'report_url', 'notify_client', 'x_fields']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1327,6 +1329,8 @@ class LumminaryAPISpecApi(object):
             path_params['authorizationId'] = params['authorization_id']  # noqa: E501
 
         query_params = []
+        if 'notify_client' in params:
+            query_params.append(('notify_client', params['notify_client']))  # noqa: E501
 
         header_params = {}
         if 'x_fields' in params:
@@ -1383,6 +1387,7 @@ class LumminaryAPISpecApi(object):
         :param str authorization_id: The UUID of the authorization (required)
         :param file file_report: A binary file (e.g. pdf) that contains the result of the authorization
         :param str original_filename: Optional original filename for the report. If not provided, the filename of uploaded file will be used
+        :param bool notify_client: Optional flag to trigger a mail being sent to the client, to notify them of the report being available
         :param str x_fields: An optional fields mask
         :return: ReportFile
                  If the method is called asynchronously,
@@ -1409,13 +1414,14 @@ class LumminaryAPISpecApi(object):
         :param str authorization_id: The UUID of the authorization (required)
         :param file file_report: A binary file (e.g. pdf) that contains the result of the authorization
         :param str original_filename: Optional original filename for the report. If not provided, the filename of uploaded file will be used
+        :param bool notify_client: Optional flag to trigger a mail being sent to the client, to notify them of the report being available
         :param str x_fields: An optional fields mask
         :return: ReportFile
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['product_id', 'authorization_id', 'file_report', 'original_filename', 'x_fields']  # noqa: E501
+        all_params = ['product_id', 'authorization_id', 'file_report', 'original_filename', 'notify_client', 'x_fields']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1450,6 +1456,8 @@ class LumminaryAPISpecApi(object):
         query_params = []
         if 'original_filename' in params:
             query_params.append(('original_filename', params['original_filename']))  # noqa: E501
+        if 'notify_client' in params:
+            query_params.append(('notify_client', params['notify_client']))  # noqa: E501
 
         header_params = {}
         if 'x_fields' in params:
@@ -1737,6 +1745,7 @@ class LumminaryAPISpecApi(object):
         :param async bool
         :param str product_id: The UUID of the product (required)
         :param str authorization_id: The UUID of the authorization (required)
+        :param bool notify_client: Optional flag to trigger a mail being sent to the client, to notify them of the report being available
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1759,12 +1768,13 @@ class LumminaryAPISpecApi(object):
         :param async bool
         :param str product_id: The UUID of the product (required)
         :param str authorization_id: The UUID of the authorization (required)
+        :param bool notify_client: Optional flag to trigger a mail being sent to the client, to notify them of the report being available
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['product_id', 'authorization_id']  # noqa: E501
+        all_params = ['product_id', 'authorization_id', 'notify_client']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1797,6 +1807,8 @@ class LumminaryAPISpecApi(object):
             path_params['authorizationId'] = params['authorization_id']  # noqa: E501
 
         query_params = []
+        if 'notify_client' in params:
+            query_params.append(('notify_client', params['notify_client']))  # noqa: E501
 
         header_params = {}
 
@@ -1842,6 +1854,7 @@ class LumminaryAPISpecApi(object):
         :param async bool
         :param str product_id: The UUID of the product (required)
         :param str authorization_id: The UUID of the authorization (required)
+        :param bool notify_client: Optional flag to trigger a mail being sent to the client, to notify them of the report being available
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1864,12 +1877,13 @@ class LumminaryAPISpecApi(object):
         :param async bool
         :param str product_id: The UUID of the product (required)
         :param str authorization_id: The UUID of the authorization (required)
+        :param bool notify_client: Optional flag to trigger a mail being sent to the client, to notify them of the report being available
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['product_id', 'authorization_id']  # noqa: E501
+        all_params = ['product_id', 'authorization_id', 'notify_client']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1902,6 +1916,8 @@ class LumminaryAPISpecApi(object):
             path_params['authorizationId'] = params['authorization_id']  # noqa: E501
 
         query_params = []
+        if 'notify_client' in params:
+            query_params.append(('notify_client', params['notify_client']))  # noqa: E501
 
         header_params = {}
 

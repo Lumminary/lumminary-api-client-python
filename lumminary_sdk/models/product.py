@@ -34,6 +34,7 @@ class Product(object):
     """
     swagger_types = {
         'snps_authorized_any': 'bool',
+        'product_partners': 'list[str]',
         'snps_authorized': 'list[str]',
         'authorized_scopes': 'list[str]',
         'email': 'str',
@@ -45,6 +46,7 @@ class Product(object):
 
     attribute_map = {
         'snps_authorized_any': 'snps_authorized_any',
+        'product_partners': 'product_partners',
         'snps_authorized': 'snps_authorized',
         'authorized_scopes': 'authorized_scopes',
         'email': 'email',
@@ -54,10 +56,11 @@ class Product(object):
         'product_uuid': 'product_uuid'
     }
 
-    def __init__(self, snps_authorized_any=None, snps_authorized=None, authorized_scopes=None, email=None, redirect_uri=None, snps_min_required_any=None, snps_min_required=None, product_uuid=None):  # noqa: E501
+    def __init__(self, snps_authorized_any=None, product_partners=None, snps_authorized=None, authorized_scopes=None, email=None, redirect_uri=None, snps_min_required_any=None, snps_min_required=None, product_uuid=None):  # noqa: E501
         """Product - a model defined in Swagger"""  # noqa: E501
 
         self._snps_authorized_any = None
+        self._product_partners = None
         self._snps_authorized = None
         self._authorized_scopes = None
         self._email = None
@@ -68,6 +71,7 @@ class Product(object):
         self.discriminator = None
 
         self.snps_authorized_any = snps_authorized_any
+        self.product_partners = product_partners
         self.snps_authorized = snps_authorized
         self.authorized_scopes = authorized_scopes
         if email is not None:
@@ -102,6 +106,31 @@ class Product(object):
             raise ValueError("Invalid value for `snps_authorized_any`, must not be `None`")  # noqa: E501
 
         self._snps_authorized_any = snps_authorized_any
+
+    @property
+    def product_partners(self):
+        """Gets the product_partners of this Product.  # noqa: E501
+
+        A list of Partner UUIDs that manage the product  # noqa: E501
+
+        :return: The product_partners of this Product.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._product_partners
+
+    @product_partners.setter
+    def product_partners(self, product_partners):
+        """Sets the product_partners of this Product.
+
+        A list of Partner UUIDs that manage the product  # noqa: E501
+
+        :param product_partners: The product_partners of this Product.  # noqa: E501
+        :type: list[str]
+        """
+        if product_partners is None:
+            raise ValueError("Invalid value for `product_partners`, must not be `None`")  # noqa: E501
+
+        self._product_partners = product_partners
 
     @property
     def snps_authorized(self):

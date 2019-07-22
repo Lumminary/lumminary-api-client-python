@@ -653,7 +653,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_authorization_result_credentials**
-> ReportCredentials post_authorization_result_credentials(product_id, authorization_id, credentials_username=credentials_username, credentials_password=credentials_password, report_url=report_url, x_fields=x_fields)
+> ReportCredentials post_authorization_result_credentials(product_id, authorization_id, credentials_username=credentials_username, credentials_password=credentials_password, report_url=report_url, notify_client=notify_client, x_fields=x_fields)
 
 Provide a result for the authorization
 
@@ -680,11 +680,12 @@ authorization_id = 'authorization_id_example' # str | The UUID of the authorizat
 credentials_username = 'credentials_username_example' # str | Credentials for accessing the result. Includes password, username and url (optional)
 credentials_password = 'credentials_password_example' # str | Credentials for accessing the result. Includes password, username and url (optional)
 report_url = 'report_url_example' # str | Credentials for accessing the result. Includes password, username and url (optional)
+notify_client = true # bool | Optional flag to trigger a mail being sent to the client, to notify them of the report being available (optional) (default to true)
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
     # Provide a result for the authorization
-    api_response = api_instance.post_authorization_result_credentials(product_id, authorization_id, credentials_username=credentials_username, credentials_password=credentials_password, report_url=report_url, x_fields=x_fields)
+    api_response = api_instance.post_authorization_result_credentials(product_id, authorization_id, credentials_username=credentials_username, credentials_password=credentials_password, report_url=report_url, notify_client=notify_client, x_fields=x_fields)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling LumminaryAPISpecApi->post_authorization_result_credentials: %s\n" % e)
@@ -699,6 +700,7 @@ Name | Type | Description  | Notes
  **credentials_username** | **str**| Credentials for accessing the result. Includes password, username and url | [optional] 
  **credentials_password** | **str**| Credentials for accessing the result. Includes password, username and url | [optional] 
  **report_url** | **str**| Credentials for accessing the result. Includes password, username and url | [optional] 
+ **notify_client** | **bool**| Optional flag to trigger a mail being sent to the client, to notify them of the report being available | [optional] [default to true]
  **x_fields** | **str**| An optional fields mask | [optional] 
 
 ### Return type
@@ -717,7 +719,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_authorization_result_file**
-> ReportFile post_authorization_result_file(product_id, authorization_id, file_report=file_report, original_filename=original_filename, x_fields=x_fields)
+> ReportFile post_authorization_result_file(product_id, authorization_id, file_report=file_report, original_filename=original_filename, notify_client=notify_client, x_fields=x_fields)
 
 Provide a file result to the authorization, e
 
@@ -743,11 +745,12 @@ product_id = 'product_id_example' # str | The UUID of the product
 authorization_id = 'authorization_id_example' # str | The UUID of the authorization
 file_report = '/path/to/file.txt' # file | A binary file (e.g. pdf) that contains the result of the authorization (optional)
 original_filename = 'original_filename_example' # str | Optional original filename for the report. If not provided, the filename of uploaded file will be used (optional)
+notify_client = true # bool | Optional flag to trigger a mail being sent to the client, to notify them of the report being available (optional) (default to true)
 x_fields = 'x_fields_example' # str | An optional fields mask (optional)
 
 try:
     # Provide a file result to the authorization, e
-    api_response = api_instance.post_authorization_result_file(product_id, authorization_id, file_report=file_report, original_filename=original_filename, x_fields=x_fields)
+    api_response = api_instance.post_authorization_result_file(product_id, authorization_id, file_report=file_report, original_filename=original_filename, notify_client=notify_client, x_fields=x_fields)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling LumminaryAPISpecApi->post_authorization_result_file: %s\n" % e)
@@ -761,6 +764,7 @@ Name | Type | Description  | Notes
  **authorization_id** | **str**| The UUID of the authorization | 
  **file_report** | **file**| A binary file (e.g. pdf) that contains the result of the authorization | [optional] 
  **original_filename** | **str**| Optional original filename for the report. If not provided, the filename of uploaded file will be used | [optional] 
+ **notify_client** | **bool**| Optional flag to trigger a mail being sent to the client, to notify them of the report being available | [optional] [default to true]
  **x_fields** | **str**| An optional fields mask | [optional] 
 
 ### Return type
@@ -893,7 +897,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_product_authorization**
-> post_product_authorization(product_id, authorization_id)
+> post_product_authorization(product_id, authorization_id, notify_client=notify_client)
 
 Signal that processing is complete, without uploading any result
 
@@ -915,10 +919,11 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 api_instance = lumminary_sdk.LumminaryAPISpecApi(lumminary_sdk.ApiClient(configuration))
 product_id = 'product_id_example' # str | The UUID of the product
 authorization_id = 'authorization_id_example' # str | The UUID of the authorization
+notify_client = true # bool | Optional flag to trigger a mail being sent to the client, to notify them of the report being available (optional) (default to true)
 
 try:
     # Signal that processing is complete, without uploading any result
-    api_instance.post_product_authorization(product_id, authorization_id)
+    api_instance.post_product_authorization(product_id, authorization_id, notify_client=notify_client)
 except ApiException as e:
     print("Exception when calling LumminaryAPISpecApi->post_product_authorization: %s\n" % e)
 ```
@@ -929,6 +934,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **product_id** | **str**| The UUID of the product | 
  **authorization_id** | **str**| The UUID of the authorization | 
+ **notify_client** | **bool**| Optional flag to trigger a mail being sent to the client, to notify them of the report being available | [optional] [default to true]
 
 ### Return type
 
@@ -946,7 +952,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_product_authorization_unfulfillable**
-> post_product_authorization_unfulfillable(product_id, authorization_id)
+> post_product_authorization_unfulfillable(product_id, authorization_id, notify_client=notify_client)
 
 Catch-all Authorization state, for authorizations that passed all verifications and should reach the partner Product, but cannot be fulfilled for various reasons
 
@@ -968,10 +974,11 @@ configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 api_instance = lumminary_sdk.LumminaryAPISpecApi(lumminary_sdk.ApiClient(configuration))
 product_id = 'product_id_example' # str | The UUID of the product
 authorization_id = 'authorization_id_example' # str | The UUID of the authorization
+notify_client = true # bool | Optional flag to trigger a mail being sent to the client, to notify them of the report being available (optional) (default to true)
 
 try:
     # Catch-all Authorization state, for authorizations that passed all verifications and should reach the partner Product, but cannot be fulfilled for various reasons
-    api_instance.post_product_authorization_unfulfillable(product_id, authorization_id)
+    api_instance.post_product_authorization_unfulfillable(product_id, authorization_id, notify_client=notify_client)
 except ApiException as e:
     print("Exception when calling LumminaryAPISpecApi->post_product_authorization_unfulfillable: %s\n" % e)
 ```
@@ -982,6 +989,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **product_id** | **str**| The UUID of the product | 
  **authorization_id** | **str**| The UUID of the authorization | 
+ **notify_client** | **bool**| Optional flag to trigger a mail being sent to the client, to notify them of the report being available | [optional] [default to true]
 
 ### Return type
 
